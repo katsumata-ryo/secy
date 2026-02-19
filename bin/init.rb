@@ -2,7 +2,7 @@
 # init.rb - AI協業プロジェクトテンプレート配置スクリプト
 #
 # Usage（dotfilesリポジトリから直接実行）:
-#   curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/init.rb | ruby
+#   curl -fsSL https://raw.githubusercontent.com/katsumata-ryo/agent-templates/main/bin/init.rb | ruby
 #
 # ローカル実行:
 #   ruby init.rb
@@ -10,7 +10,7 @@
 require "fileutils"
 require "open-uri"
 
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/templates"
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/agent-templates/main/templates"
 
 TEMPLATE_FILES = %w[
   CLAUDE.md
@@ -50,7 +50,7 @@ end
 
 def fetch_template(path)
   # ローカルのtemplatesディレクトリがあればそちらを優先（開発時）
-  local_path = File.join(File.dirname(__FILE__), "templates", path)
+  local_path = File.join(File.dirname(File.dirname(__FILE__)), "templates", path)
   if File.exist?(local_path)
     File.read(local_path)
   else
