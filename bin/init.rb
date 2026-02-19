@@ -5,7 +5,7 @@
 #   curl -fsSL https://raw.githubusercontent.com/katsumata-ryo/agent-templates/main/bin/init.rb | ruby
 #
 # ローカル実行:
-#   ruby init.rb
+#   ruby bin/init.rb
 
 require "fileutils"
 require "open-uri"
@@ -14,7 +14,6 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/agent-templat
 
 TEMPLATE_FILES = %w[
   CLAUDE.md
-  README.md
   .claude/hooks/session-start.sh
   .claude/skills/handover/SKILL.md
   .claude/skills/refresh/SKILL.md
