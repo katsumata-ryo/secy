@@ -33,6 +33,7 @@ ruby /path/to/agent-templates/bin/init.rb
 ```
 <プロジェクト>/
   CLAUDE.md                          # AI 協業ガイドライン（メンバー・ペインID等）
+  AGENTS.md                          # Codex 専用ガイドライン
   .claude/
     hooks/
       session-start.sh               # セッション開始時に自動実行
@@ -40,6 +41,11 @@ ruby /path/to/agent-templates/bin/init.rb
       handover/SKILL.md              # /handover コマンド
       refresh/SKILL.md               # /refresh コマンド
   docs/
+    working-agreements/              # 人 + エージェントの運用合意
+      README.md
+      team-collaboration.md
+      engineering-rules.md
+      workflow.md
     notes/                           # 開発メモ
     plans/                           # 設計・Issue 計画
     tmp/
@@ -56,5 +62,5 @@ ruby /path/to/agent-templates/bin/init.rb
 
 ## セットアップ後にやること
 
-1. `wezterm cli list` でペイン ID を確認し、`CLAUDE.md` のペインテーブルを埋める
+1. `wezterm cli list` でペイン ID を確認し、`docs/working-agreements/team-collaboration.md` のペインテーブルを埋める
 2. `docs/tmp/handover.md` に初期状況を記録する
