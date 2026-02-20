@@ -15,6 +15,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/agent-templat
 TEMPLATE_FILES = %w[
   CLAUDE.md
   AGENTS.md
+  .claude/settings.json
   .claude/hooks/session-start.sh
   .claude/skills/handover/SKILL.md
   .claude/skills/refresh/SKILL.md
