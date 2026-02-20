@@ -1,0 +1,15 @@
+{
+  "model": "sonnet",
+  "effortLevel": "high",
+  "language": "japanese",
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git *)",
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}
