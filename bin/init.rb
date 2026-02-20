@@ -14,9 +14,14 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/agent-templat
 
 TEMPLATE_FILES = %w[
   CLAUDE.md
+  AGENTS.md
   .claude/hooks/session-start.sh
   .claude/skills/handover/SKILL.md
   .claude/skills/refresh/SKILL.md
+  docs/working-agreements/README.md
+  docs/working-agreements/team-collaboration.md
+  docs/working-agreements/engineering-rules.md
+  docs/working-agreements/workflow.md
   docs/tmp/handover.md
 ]
 
@@ -27,6 +32,7 @@ TEMPLATE_DIRS = %w[
   docs/notes
   docs/plans
   docs/tmp
+  docs/working-agreements
 ]
 
 # ----------------------------------------
