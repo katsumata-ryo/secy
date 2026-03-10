@@ -2,7 +2,7 @@
 # init.rb - AI協業プロジェクトテンプレート配置スクリプト
 #
 # Usage（dotfilesリポジトリから直接実行）:
-#   curl -fsSL https://raw.githubusercontent.com/katsumata-ryo/agent-templates/main/bin/init.rb | ruby
+#   curl -fsSL https://raw.githubusercontent.com/katsumata-ryo/secy/main/bin/init.rb | ruby
 #
 # ローカル実行:
 #   ruby bin/init.rb
@@ -10,7 +10,7 @@
 require "fileutils"
 require "open-uri"
 
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/agent-templates/main/templates"
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/katsumata-ryo/secy/main/templates"
 
 TEMPLATE_FILES = %w[
   CLAUDE.md
