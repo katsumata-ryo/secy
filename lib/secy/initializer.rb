@@ -65,8 +65,14 @@ module Secy
       puts "📋 モードを選択してください:"
       puts "  1. personal - 個人開発（AIペアプロ）"
       puts "  2. team     - チーム開発（マルチAI協業）"
-      input = prompt("モード (1 or 2)", default: "1")
-      input == "2" ? "team" : "personal"
+      loop do
+        input = prompt("モード (1 or 2)", default: "1")
+        case input
+        when "1", "personal" then return "personal"
+        when "2", "team"     then return "team"
+        else puts "  ⚠️  1 または 2 を入力してください"
+        end
+      end
     end
 
     def ask_project_name
@@ -147,8 +153,7 @@ module Secy
                         end
 
         unless File.exist?(template_path)
-          puts "  ⚠️  テンプレート見つからず: #{path}"
-          next
+          abort "  ❌ テンプレートが見つかりません: #{template_path}"
         end
 
         content = renderer.render(template_path)

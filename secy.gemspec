@@ -12,7 +12,8 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0"
 
-  spec.files = Dir["lib/**/*.rb", "templates/**/*", "exe/*"]
+  spec.files = Dir["lib/**/*.rb", "exe/*"] +
+               Dir.glob("templates/**/*", File::FNM_DOTMATCH).reject { |f| f.end_with?(".", "..") }
   spec.bindir = "exe"
   spec.executables = ["secy"]
 
