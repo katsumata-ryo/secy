@@ -1,66 +1,71 @@
 # secy
 
-Claude Code + Codex + Gemini による AI 協業開発プロジェクトの共通テンプレートを管理するリポジトリ。
+AI協働開発プロジェクトのテンプレート展開ツール。`secy init` で personal / team の2モードからテンプレートを配置する。
 
-新しいプロジェクトを始めるときに `bin/init.rb` を実行すると、対話式にテンプレートファイルが配置される。
+## インストール
+
+```bash
+gem install secy
+```
 
 ## 使い方
 
-### curl で直接実行
-
 ```bash
 # 新プロジェクトのディレクトリで実行
-curl -fsSL https://raw.githubusercontent.com/katsumata-ryo/secy/main/bin/init.rb | ruby
+mkdir my-project && cd my-project
+secy init
 ```
 
-### ローカルで実行
+対話式でモード（personal / team）とプロジェクト名を選択し、テンプレートが配置される。
 
-```bash
-# このリポジトリをクローン済みの場合
-ruby /path/to/secy/bin/init.rb
-```
+### モード
 
-## init.rb の動き
-
-1. プロジェクト名を質問
-2. デフォルトのメンバー構成を使うか質問（使わない場合は人数・名前・モデル・役割を入力）
-3. GitHub Raw からテンプレートを取得（ローカルに `templates/` があればそちら優先）
-4. 変数置換してカレントディレクトリに配置
-5. `session-start.sh` に実行権限を付与
+- **personal** - 個人開発（AIペアプロ）。シンプルな構成
+- **team** - チーム開発（Claude Code + Codex + Gemini のマルチAI協業）。メンバー設定・ペインID管理あり
 
 ## 配置されるファイル
 
+### 共通（両モード）
+
 ```
-<プロジェクト>/
-  CLAUDE.md                          # AI 協業ガイドライン（メンバー・ペインID等）
-  AGENTS.md                          # Codex 専用ガイドライン
-  .claude/
-    hooks/
-      session-start.sh               # セッション開始時に自動実行
-    skills/
-      handover/SKILL.md              # /handover コマンド
-      refresh/SKILL.md               # /refresh コマンド
-  docs/
-    working-agreements/              # 人 + エージェントの運用合意
-      README.md
-      team-collaboration.md
-      engineering-rules.md
-      workflow.md
-    notes/                           # 開発メモ
-    plans/                           # 設計・Issue 計画
-    tmp/
-      handover.md                    # セッション引き継ぎ記録
+.claude/settings.json                # Claude Code 設定
+.claude/skills/handover/SKILL.md     # /handover コマンド
+.claude/skills/refresh/SKILL.md      # /refresh コマンド
+docs/tmp/handover.md                 # セッション引き継ぎ記録
+```
+
+### personal モード
+
+```
+CLAUDE.md                            # AIペアプロガイドライン
+.claude/hooks/session-start.sh       # セッション開始フック
+docs/working-agreements/
+  README.md / engineering-rules.md / workflow.md
+```
+
+### team モード
+
+```
+CLAUDE.md                            # AI協業ガイドライン
+AGENTS.md                            # Codex 専用ガイドライン
+.claude/hooks/session-start.sh       # セッション開始フック
+docs/working-agreements/
+  README.md / team-collaboration.md / engineering-rules.md / workflow.md
 ```
 
 ## テンプレート変数
 
-| プレースホルダー | 内容 |
-|---|---|
-| `{{PROJECT_NAME}}` | プロジェクト名 |
-| `{{MEMBERS_TABLE}}` | メンバー表（名前・モデル・役割） |
-| `{{PANE_TABLE}}` | WezTerm ペインID 表（ID は空白、名前だけ入る） |
+| プレースホルダー | 内容 | モード |
+|---|---|---|
+| `{{PROJECT_NAME}}` | プロジェクト名 | 両方 |
+| `{{MEMBERS_TABLE}}` | メンバー表（名前・モデル・役割） | team |
+| `{{PANE_TABLE}}` | WezTerm ペインID 表 | team |
 
-## セットアップ後にやること
+## 開発
 
-1. `wezterm cli list` でペイン ID を確認し、`docs/working-agreements/team-collaboration.md` のペインテーブルを埋める
-2. `docs/tmp/handover.md` に初期状況を記録する
+```bash
+git clone https://github.com/katsumata-ryo/secy.git
+cd secy
+bundle install
+bundle exec rspec
+```
